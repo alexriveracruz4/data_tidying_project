@@ -5,6 +5,7 @@ date: "16/12/2020"
 output: html_document
 ---
 
+We have to set up by installing some packages and calling  the libraries that we have to use in this project.
 
 ```{r setup, include=FALSE}
 ## install packages if necessary
@@ -46,6 +47,8 @@ colnames(df2) <- df2[1,]
 
 ### Save Raw Data
 
+Saving the data in ore raw_data directory in case the link disappear or we can't enter to the data in the future.
+
 ```{r save-data, warning=FALSE} 
 ## use saveRDS() to save each object as a .rds file 
 saveRDS(df1, file = "df_department.rds")
@@ -53,6 +56,8 @@ saveRDS(df2, file = "df_retail.rds")
 ```
 
 ### Wrangle Data
+
+Wrangling the df2 data, passing from wide data to long data to get a dataframe with 3 columns(business,year, n)
 
 ```{r wrangle-df2, warning=FALSE} 
 ## an example working with df2
@@ -74,6 +79,8 @@ df_retail <- df2 %>%
   filter(business == "Retail sales, total "| business=="Department stores ")
 
 ```
+
+Wrangling df1 data, shaping the data to get a dataframe with 3 columns (business,year,n)
 
 ```{r wrangle-df1, warning=FALSE} 
 ## now, your turn!
@@ -99,10 +106,14 @@ df_department <- df1 %>%
   select(business,year,n)
 ```
 
+Combining the two datasets in one dataset.
+
 ```{r merge-data, warning=FALSE} 
 ## Now, combine the two data frames
-df_total <- function_name()
+df_total <- combine(df_retail,df_department)
 ```
+
+Plotting each business and the combined data through the years
 
 ```{r plot, warning=FALSE, fig.width=10} 
 ## Plot Retail Sales data
